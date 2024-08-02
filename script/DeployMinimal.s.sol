@@ -16,7 +16,7 @@ contract DeployMinimal is Script {
         // creates a new config instance 
         HelperConfig helperConfig = new HelperConfig();
         // fetches configs from HelperConfigs 
-        helperConfig.NetworkConfigs memory config = helperConfig.getConfigByChainId(block.chainId);
+        HelperConfig.NetworkConfigs memory config = helperConfig.getConfig();
         vm.startBroadcast();
         // deploys the contract with above configs 
         MinimalAccount minimalAccount = new MinimalAccount(config.entryPoint);

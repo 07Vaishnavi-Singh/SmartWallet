@@ -49,8 +49,12 @@ mapping(uint => NetworkConfigs) public chainIdToNetworkConfigs;
         });
     }
 
+     function getConfig() public returns (NetworkConfigs memory) {
+        return getConfigByChainId(block.chainid);
+    }
+
     // gets network configs by chain Id 
-      function getConfigByChainId(uint256 chainId) public returns (NetworkConfigs memory) {
+    function getConfigByChainId(uint256 chainId) public view returns (NetworkConfigs memory) {
         if (chainId == LOCAL_CHAIN_ID) {
             return getOrCreateAnvilEthConfig();
         } else if (chainIdToNetworkConfigs[chainId].account != address(0)) {
