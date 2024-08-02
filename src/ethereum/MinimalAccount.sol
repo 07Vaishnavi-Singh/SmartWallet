@@ -93,4 +93,7 @@ contract MinimalAccount is IAccount, Ownable {
             revert FUNCTION_CALL_FAILED(result);
         }
     }
+
+    receive() external payable{} // as this contractc also needs to accept funds 
+    
 }
