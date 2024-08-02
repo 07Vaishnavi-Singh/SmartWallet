@@ -2,7 +2,7 @@
 pragma solidity ^0.8.23;
 
 import {Script} from "forge-std/Script.sol" ; // has vm methods to interact with the ethereum network on chain 
-import {MinimalAccount} from "../src/ethereum/MinimalAccount..sol";
+import {MinimalAccount} from "../src/ethereum/MinimalAccount.sol";
 import {HelperConfig} from "./HelperConfig.s.sol";
 
 contract DeployMinimal is Script {
@@ -12,11 +12,11 @@ contract DeployMinimal is Script {
         deployMinimalContract();
     }
 
-    function deployMinimalContract() internal returns(HelperConfigs, MinimalAccount) {
+    function deployMinimalContract() internal returns(HelperConfig memory, MinimalAccount) {
         HelperConfig helperConfig = new HelperConfig();
         helperConfig.NetworkConfig memory config = helperConfig.getConfigByChainId(block.chainId);
 
-        vm.startBroadcast();();
+        vm.startBroadcast();
         MinimalAccount minimalAccount = new MinimalAccount(config.entryPoint);
 
         vm.stopBroadcast();
